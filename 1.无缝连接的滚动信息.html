@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+	<title>滚动显示信息</title>
+	<meta charset="utf-8">
+	
+	<style type="text/css">
+		body,ul,li{margin: 0;padding: 0; list-style: none;}
+		#box1{width:200px; height:120px; border:1px solid #bbb; margin: 100px auto; overflow: hidden;}
+		li{height:24px;line-height:24px; cursor: pointer;}
+	</style>
+	
+</head>
+<body>
+	<div id="box1">
+		<ul id="con1">
+			<li>1.我是第一条信息</li>
+			<li>2.我是第二条信息</li>
+			<li>3.我是第三条信息</li>
+			<li>4.我是第四条信息</li>
+			<li>5.我是第五条信息</li>
+			<li>6.我是第6条信息</li>
+			<li>7.我是第7条信息</li>
+		</ul>
+		<ul id="con2"></ul>
+	</div>
+	<script type="text/javascript">
+			var area=document.getElementById("box1");
+			var ul1=document.getElementById("con1");
+			var ul2=document.getElementById("con2");
+			var speed=50;
+			var scrollTop=0;
+			ul2.innerHTML=ul1.innerHTML;
+			function scrollUp(){
+				if(area.scrollTop>=ul1.offsetHeight){
+					area.scrollTop=0;
+				}else{
+					area.scrollTop++;
+				}
+			}
+			var timer=setInterval(scrollUp,speed);
+			area.onmouseover=function(){
+				clearInterval(timer);
+			}
+			area.onmouseout=function(){
+				timer=setInterval(scrollUp,speed);
+			}
+
+	</script>
+</body>
+</html>
