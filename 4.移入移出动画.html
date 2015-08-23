@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<title>移入移出动画</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		body{margin: 0;}
+		#box{width: 200px; height: 200px; background: red; position: relative;left: -200px; top:0;}
+		#box span{color: #fff; width: 20px; height: 50px; background: blue; position: absolute;left: 200px; top:75px;}
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){
+		var mybox=document.getElementById('box');
+		var timer=null;
+		mybox.onmouseover=function(){
+			move(10,0);	
+		}
+		mybox.onmouseout=function(){
+			move(-10,-200);
+		}
+		function move(speed,mytar){
+			clearInterval(timer);
+			var mybox=document.getElementById('box');
+			timer=setInterval(function (){
+			if(mybox.offsetLeft==mytar){
+				clearInterval(timer);
+			}else{
+			mybox.style.left=mybox.offsetLeft+speed+'px';				
+			}
+
+		},50);
+		}	
+		
+	}	
+	</script>
+</head>
+<body>
+	<div id="box">
+		<p>1.我要分享的第一条内容</p>
+		<p>2.我要分享的第二条内容</p>
+		<p>3.我要分享的第三条内容</p>
+		<p>4.我要分享的第四条内容</p>
+		<span>分享</span>
+	</div>
+</body>
+</html>
