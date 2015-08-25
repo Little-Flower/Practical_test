@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+	<title>元素运动</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		ul,li{list-style: none;}
+		ul li{width: 200px; height: 100px; background: pink; margin: 20px; border:2px solid green;}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			var lis=document.getElementsByTagName('li');
+			for (var i=0; i<lis.length;i++){
+				lis[i].timer=null;
+				lis[i].onmouseover=function(){
+					move(this,'width',400);
+				}
+				lis[i].onmouseout=function(){
+					move(this,'width',200);
+				}
+			}
+			var li1=document.getElementById('li1');
+				li1.onmouseover=function(){
+					move(this,'height',300);
+				}
+				li1.onmouseout=function(){
+					move(this,'height',100);
+				}
+			//var timer=null;
+			function move(obj,attr,mytar){
+				clearInterval(obj.timer);
+				//var myw=parseInt(getStyle(obj,'width'));
+
+				obj.timer=setInterval(function(){
+					var myw=parseInt(getStyle(obj,attr))
+					var speed=(mytar-myw)/8;
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);
+					if(myw==mytar){
+						clearInterval(obj.timer);
+					}else{
+						obj.style[attr]=myw+speed+'px';
+					}
+				},30)
+			}
+			function getStyle(obj,attr){ //获得任意属性值
+				if(obj.currentStyle){//currentStyle针对IE
+					return obj.currentStyle[attr];
+				}else{//针对火狐Firefoxf用 getComputedStyle
+					return getComputedStyle(obj,false)[attr];
+				}
+			}
+		}
+
+	</script>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li id="li1"></li>
+	</ul>	
+</body>
+</html>
