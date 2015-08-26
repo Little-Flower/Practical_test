@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+	<title>透明动画（利用函数封装实现）/title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#div1{width: 200px; height: 200px; background: #f00; margin: 30px; opacity: 0.3;filter:alpha(opacity:30); }
+	</style>
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			var divs=document.getElementById('div1');
+				divs.onmouseover=function(){//鼠标移入，变为无透明
+					move(this,'opacity',100);
+
+				}
+				divs.onmouseout=function(){//鼠标移出，透明度为30
+					move(this,'opacity',30);
+				}
+			
+			
+			//var timer=null;
+			var alpha=30;
+			
+			function move(obj,attr,mytar){
+				clearInterval(obj.timer);
+				//var myw=parseInt(getStyle(obj,'width'));
+
+				obj.timer=setInterval(function(){
+					var myw=0;
+					if(attr=='opacity'){
+						myw=Math.round(parseFloat(getStyle(obj,attr))*100);
+					}else{
+						myw=parseInt(getStyle(obj,attr));
+					}
+					var speed=(mytar-myw)/8;
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);
+					if(myw==mytar){
+						clearInterval(obj.timer);
+					}else{
+						if(attr=='opacity'){
+							obj.style.filter='alpha(opacity:'+(myw+speed)+')';//针对IE，解决兼容性
+							obj.style.opacity=(myw+speed)/100;
+						}else{
+							obj.style[attr]=myw+speed+'px';	
+						}
+					}
+				},30)	
+			}
+			function getStyle(obj,attr){ //获得任意属性值
+				if(obj.currentStyle){//currentStyle针对IE
+					return obj.currentStyle[attr];
+				}else{//针对火狐Firefoxf用 getComputedStyle
+					return getComputedStyle(obj,false)[attr];
+				}
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div id="div1"></div>
+
+</body>
+</html>
