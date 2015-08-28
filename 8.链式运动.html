@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+	<title>运动效果</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#div1{width: 200px; height: 200px; background: #f00; margin: 30px; opacity: 0.3;filter:alpha(opacity:30); border: 3px solid green;}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/perfectmove.js"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			var mydiv=document.getElementById('div1');
+			mydiv.onmouseover=function(){
+				move(mydiv,{width:400},function(){
+					move(mydiv,{height:400},function(){
+						move(mydiv,{opacity:100});
+					})
+				});
+			}
+			mydiv.onmouseout=function(){
+				move(mydiv,{opacity:30},function(){
+					move(mydiv,{height:200},function(){
+						move(mydiv,{width:200})
+					})
+				});
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div id="div1"></div>
+
+</body>
+</html>
