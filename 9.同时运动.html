@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<title>同时运动的效果(perfectmove)</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#div1{width: 200px; height: 200px; background: #f00; margin: 30px; opacity: 0.3;filter:alpha(opacity:30); border: 3px solid green;}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/perfectmove.js"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			var mydiv=document.getElementById('div1');
+			mydiv.onmouseover=function(){
+				move(mydiv,{width:220,height:400,opacity:100});
+			}
+			mydiv.onmouseout=function(){
+				move(mydiv,{width:200,height:200,opacity:30});
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div id="div1"></div>
+
+</body>
+</html>
