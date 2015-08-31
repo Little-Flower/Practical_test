@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+	<title>淘宝小栏目</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		p{padding: 0;margin-top: 0;}
+		#box{margin: 50px auto; width: 200px; font-size: 12px; }
+		#box a img{border: none; } 
+		#box a{display: inline-block; width: 60px; height: 30px; position: relative; border: 1px solid #CCC; padding-top: 30px; line-height: 30px; text-align: center; overflow: hidden; text-decoration: none; }
+		#box a i{position: absolute; top: 10px; left: 0px; display: inline-block; opacity: 1; filter:alpha(opacity=100); width: 100%;text-align: center;}
+		
+		#box a:hover{color:orange;}
+	</style>
+	<script type="text/javascript" src="js/perfectmove.js"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			var mydiv=document.getElementById('box')
+			var mya=mydiv.getElementsByTagName('a');
+			for(var i=0;i<mya.length;i++){
+				mya[i].onmouseenter=function(){
+				var _this=this.getElementsByTagName('i')[0];
+				move(_this,{top:-10,opacity:0},function(){
+					_this.style.top=15+'px';
+					move(_this,{top:10,opacity:100})
+				});
+				
+				}
+			}		
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<a href=""><i><img src="images/1.jpg"></i><p>理财</p></a>
+		<a href=""><i><img src="images/2.jpg"></i><p>找服务</p></a>
+	</div>
+	
+</body>
+</html>
