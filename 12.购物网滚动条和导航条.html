@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+	<title>滚动条和导航条设置</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		body{margin:0;}
+		#menu{position: fixed; left: 50%; margin-left: 301px; top: 200px;}
+		h1,h2,ul,li,img{margin:0; padding:0; list-style: none;}
+	 	#menu a{display: block; width: 90px; height: 40px; line-height: 40px; color: #000; border: 1px solid #ccc; margin-bottom: 10px; text-align: center;text-decoration: none; }
+	 	#menu a:hover{background: #f90;color: #fff;}
+	 	#content{width:560px; margin: 0px auto; }
+	 	h2{padding-bottom: 10px; border-bottom: 2px solid #f90; margin-bottom: 15px;}
+	 	.item{width:540px; padding:20px; border: 1px solid #ccc; margin-bottom: 10px; }
+	 	#content li{display: inline; margin-right:15px;}
+	 	#content li img{width: 166px; height: 166px; border: none; margin-bottom: 10px;}
+	 	.current{background: #f90;color: #fff;}
+	 	 * html, * html body {
+            background-image: url(about:blank);
+            background-attachment: fixed;
+        }
+
+        * html #menu {
+            position: absolute;
+            bottom: auto;
+            top: expression(100+((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+'px');
+        }
+	</style>
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+            $(window).scroll(function () {
+                var items = $("#content").find(".item");
+                var menu = $("#menu");
+                var top = $(document).scrollTop();
+                var currentId = ""; //滚动条现在所在位置的item id
+                items.each(function () {
+                    var m = $(this);
+                    //注意：m.offset().top代表每一个item的顶部位置
+                    if (top > m.offset().top - 300) {
+                        currentId = "#" + m.attr("id");
+                    } else {
+                        return false;
+                    }
+                });
+
+                var currentLink = menu.find(".current");
+                if (currentId && currentLink.attr("href") != currentId) {
+                    currentLink.removeClass("current");
+                    menu.find("[href=" + currentId + "]").addClass("current");
+                }
+            });
+        });
+	</script>
+</head>
+<body>
+	<div id="all">
+		<div id="menu">
+			<ul>
+				<li class="current"><a href="#item1">1F 好123</a></li>
+				<li><a href="#item2">2F 百度</a></li>
+				<li><a href="#item3">3F 网易</a></li>
+				<li><a href="#item4">4F 淘宝</a></li>
+				<li><a href="#item5">5F 空间</a></li>
+			</ul>
+		</div>
+		<div id="content">
+			<h1>(●—●)购物网</h1>
+			<div id="item1" class="item">
+				<h2>1F 好123</h2>
+				<ul>
+					<li><a href=""><img src="images/img1.jpg"></a></li>
+					<li><a href=""><img src="images/img1.jpg"></a></li>
+					<li><a href=""><img src="images/img1.jpg"></a></li>
+					<li><a href=""><img src="images/img1.jpg"></a></li>
+					<li><a href=""><img src="images/img1.jpg"></a></li>
+					<li><a href=""><img src="images/img1.jpg"></a></li>
+				</ul>	
+			</div>
+			<div id="item2" class="item">
+				<h2>2F 百度</h2>
+				<ul>
+					<li><a href=""><img src="images/img2.jpg"></a></li>
+					<li><a href=""><img src="images/img2.jpg"></a></li>
+					<li><a href=""><img src="images/img2.jpg"></a></li>
+					<li><a href=""><img src="images/img2.jpg"></a></li>
+					<li><a href=""><img src="images/img2.jpg"></a></li>
+					<li><a href=""><img src="images/img2.jpg"></a></li>
+				</ul>	
+			</div>
+			<div id="item3" class="item">
+				<h2>3F 网易</h2>
+				<ul>
+					<li><a href=""><img src="images/img3.jpg"></a></li>
+					<li><a href=""><img src="images/img3.jpg"></a></li>
+					<li><a href=""><img src="images/img3.jpg"></a></li>
+					<li><a href=""><img src="images/img3.jpg"></a></li>
+					<li><a href=""><img src="images/img3.jpg"></a></li>
+					<li><a href=""><img src="images/img3.jpg"></a></li>
+				</ul>	
+			</div>
+			<div id="item4" class="item">
+				<h2>4F 淘宝</h2>
+				<ul>
+					<li><a href=""><img src="images/img4.jpg"></a></li>
+					<li><a href=""><img src="images/img4.jpg"></a></li>
+					<li><a href=""><img src="images/img4.jpg"></a></li>
+					<li><a href=""><img src="images/img4.jpg"></a></li>
+					<li><a href=""><img src="images/img4.jpg"></a></li>
+					<li><a href=""><img src="images/img4.jpg"></a></li>
+				</ul>	
+			</div>
+			<div id="item5" class="item">
+				<h2>5F 空间</h2>
+				<ul>
+					<li><a href=""><img src="images/img5.jpg"></a></li>
+					<li><a href=""><img src="images/img5.jpg"></a></li>
+					<li><a href=""><img src="images/img5.jpg"></a></li>
+					<li><a href=""><img src="images/img5.jpg"></a></li>
+					<li><a href=""><img src="images/img5.jpg"></a></li>
+					<li><a href=""><img src="images/img5.jpg"></a></li>
+				</ul>	
+			</div>
+
+			
+
+
+		</div>
+	</div>
+</body>
+</html>
