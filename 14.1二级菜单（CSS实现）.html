@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+	<title>二级菜单测试</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		body{margin: 0;}
+		ul,li{margin: 0; padding: 0; list-style: none;}
+		#all{width: 400px; height: 40px; line-height: 40px; text-align: center; margin: 40px auto;}
+		ul li{float: left;}
+		ul li ul{ position: absolute; display: none;}
+		ul li ul li{float: none;}
+		a{padding: 0 20px; text-decoration: none; background: #ccc;display:inline-block;  color: #000;}
+		a:hover{background: #f90; color: #fff;}
+		ul li:hover ul{display: block;}
+
+	</style>
+</head>
+<body>
+	<div id="all">
+		<ul>
+			<li ><a href="" >首页</a></li>
+			<li><a href="">课程</a>
+				<ul>
+					<li><a href="">前端课程</a></li>
+					<li><a href="">后台开发</a></li>
+					<li><a href="">数据处理</a></li>
+				</ul>
+			</li>
+			<li><a href="">学习视频</a>
+				<ul>
+					<li><a href="">前端视频</a></li>
+					<li><a href="">后台视频</a></li>
+					<li><a href="">数据视频</a></li>
+				</ul>
+			</li>
+			<li><a href="">社区</a></li>
+		</ul>
+	</div>
+</body>
+</html>
